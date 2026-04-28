@@ -1,0 +1,65 @@
+Sign in to the AWS Management Console
+Navigate to Services → EC2 → Instances
+Click Launch Instance
+Configure:
+Name: e.g., MyWebServer
+AMI: Choose Amazon Linux 2 (recommended) or Ubuntu
+Instance type: t2.micro (free tier eligible)
+Key pair: Create/download a .pem file (important!)
+Network Settings:
+Allow:
+SSH (port 22) → your IP
+HTTP (port 80) → anywhere (0.0.0.0/0)
+
+Click Launch Instance
+Use your terminal:
+
+chmod 400 your-key.pem
+ssh -i your-key.pem ec2-user@<Public-IP>
+
+(For Ubuntu, use ubuntu@<Public-IP> instead of ec2-user)
+
+🌐 Step 3: Install Apache Web Server
+For Amazon Linux:
+Amazon Linux:
+sudo yum update -y
+sudo yum install httpd -y
+For Ubuntu:
+sudo apt update
+sudo apt install apache2 -y
+▶️ Step 4: Start and Enable Apache
+sudo systemctl start httpd     # Amazon Linux
+sudo systemctl enable httpd
+OR (Ubuntu):
+
+sudo systemctl start apache2
+sudo systemctl enable apache2
+Open a browser
+Enter:
+http://<Public-IP>
+
+You should see the default Apache page (“It works!”)
+✏️ Step 6: Add a Custom Web Page
+cd /var/www/html
+sudo nano index.html
+
+Example content:
+
+<h1>Welcome to My AWS Web Server</h1>
+<p>Apache is running successfully!</p>
+
+⚠️ Common Issues
+❌ Cannot access webpage → Check Security Group (port 80 open)
+❌ SSH fails → Check key permissions (chmod 400)
+
+❌ Apache not running → Check:
+
+sudo systemctl status httpd
+✅ Summary
+
+You:
+
+Created an EC2 instance
+Connected via SSH
+Installed Apache
+Hosted a web page
