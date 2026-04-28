@@ -1,0 +1,5 @@
+Find a procedure to transfer the files from one virtual machine to another
+virtual machine.
+
+
+https://chatgpt.com/share/69f0fa85-2078-83e8-84f4-735968421721
