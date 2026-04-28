@@ -1,0 +1,76 @@
+To display the output (GUI or Console) of an Ubuntu 22.04 Virtual Machine created with Vagrant and VirtualBox, follow these steps.
+By default, Vagrant runs machines in "headless" mode (no visible window). You must explicitly enable the VirtualBox GUI in the configuration to see the VM's display output. 
+Step 1: Install Prerequisites
+Ensure you have the necessary software installed on your host machine. 
+Install VirtualBox: Download and install from the official website.
+Install Vagrant: Download and install from the HashiCorp website.
+Reboot: Reboot your computer to ensure network drivers and hypervisors are correctly loaded. 
+OpenLogic
+OpenLogic
+ +4
+Step 2: Initialize the Project
+Open your terminal (Command Prompt, PowerShell, or Terminal) and set up the directory. 
+Create a new folder for your project:
+bash
+mkdir ubuntu-vm
+cd ubuntu-vm
+Initialize the Vagrant environment with an Ubuntu 22.04 box:
+bash
+vagrant init generic/ubuntu2204
+Note: The generic/ubuntu2204 box is a standard, widely used base box. 
+conclusion.nl
+conclusion.nl
+ +1
+Step 3: Configure GUI Mode (Crucial Step) 
+To display the VM output on your screen, you must edit the Vagrantfile generated in the previous step.
+Open the Vagrantfile in a text editor (e.g., Notepad, VS Code).
+Locate the config.vm.provider "virtualbox" block. It is often commented out.
+Add or uncomment the line vb.gui = true. 
+Your configuration should look like this:
+ruby
+Vagrant.configure("2") do |config|
+  config.vm.box = "generic/ubuntu2204"
+
+  config.vm.provider "virtualbox" do |vb|
+    # Display the VirtualBox GUI window
+    vb.gui = true
+    
+    # Optional: Customize memory and CPUs
+    vb.memory = "2048"
+    vb.cpus = 2
+  end
+end
+Setting vb.gui = true forces VirtualBox to open a window showing the VM's display output instead of running in the background. 
+Stack Overflow
+Stack Overflow
+ +2
+Step 4: Deploy the Machine 
+Run the command to download the image and start the virtual machine: 
+bash
+vagrant up
+What happens: Vagrant will download the Ubuntu 22.04 ISO/box (if not already cached), import it into VirtualBox, and boot it.
+The Output: Because you enabled vb.gui = true, a VirtualBox window will pop up immediately, showing the boot process and the login prompt. 
+Stack Overflow
+Stack Overflow
+ +2
+Step 5: Installing a Graphical Desktop (Optional) 
+Most Vagrant boxes (like generic/ubuntu2204) are Server versions, meaning the "output" you see in the window will just be a black command-line text interface (TTY). If you want a full graphical desktop (like Windows or macOS), you must install a desktop environment. 
+Add this provisioning script to your Vagrantfile before the final end tag to automatically install a lightweight desktop (XFCE) or the full Ubuntu desktop: 
+ruby
+  # Install basic GUI Desktop (XFCE) for visual output
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo apt-get update
+    sudo apt-get install -y xfce4 virtualbox-guest-utils virtualbox-guest-x11
+    sudo systemctl set-default graphical.target
+    # Start the GUI immediately
+    sudo systemctl isolate graphical.target
+  SHELL
+After adding this, run vagrant reload --provision to apply changes. 
+Stack Overflow
+Stack Overflow
+ +1
+Summary of Commands
+vagrant up: Starts the machine and opens the display window.
+vagrant ssh: Connects to the machine via terminal (no GUI required).
+vagrant halt: Shuts down the machine.
+vagrant destroy: Deletes the machine completely.
