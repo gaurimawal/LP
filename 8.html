@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I2IT College App</title>
+
+    <!-- jQuery Mobile CSS -->
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <!-- jQuery Mobile -->
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f0f2f5;
+        }
+
+        /* Header & Footer Styling */
+        .ui-header, .ui-footer {
+            background: linear-gradient(135deg, #1e3c72, #2a5298) !important;
+            color: #ffffff !important;
+            text-shadow: none !important;
+            border: none !important;
+        }
+
+        /* Navbar Styling */
+        .ui-navbar li a {
+            background: #2c3e50 !important;
+            color: #ecf0f1 !important;
+            border: none !important;
+            text-shadow: none !important;
+            font-weight: normal;
+        }
+
+        .ui-navbar li a.ui-btn-active {
+            background: #ff7f50 !important; /* Coral Accent */
+            box-shadow: none !important;
+        }
+
+        /* Card Styling */
+        .card {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid #ddd;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+        .gallery-grid img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+
+        /* Form Styling */
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .ui-listview > li h2 {
+            margin: 0 0 5px 0;
+            color: #1e3c72;
+        }
+    </style>
+</head>
+<body>
+
+<!-- HOME PAGE -->
+<div data-role="page" id="home">
+    <div data-role="header" data-position="fixed" data-id="nav">
+        <h1>I2IT College</h1>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home" class="ui-btn-active ui-state-persist" data-icon="home">Home</a></li>
+                <li><a href="#dept" data-icon="grid">Depts</a></li>
+                <li><a href="#gallery" data-icon="camera">Gallery</a></li>
+                <li><a href="#contact" data-icon="mail">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div role="main" class="ui-content">
+        <div class="card">
+            <h2>Welcome to I2IT</h2>
+            <p>Empowering students with innovation and technical excellence since 2014. Our campus in Pune provides a world-class environment for engineering and management studies.</p>
+           <img src="images/Main-Gate-Photo-1.jpg" alt="Campus" 
+     style="max-width: 50%; height: auto; margin-top: 10px;">
+
+        </div>
+        
+        <div class="card">
+            <h3>Latest Updates</h3>
+            <ul data-role="listview" data-inset="true">
+                <li>Admissions Open 2026-27</li>
+                <li>Annual Tech Fest: March 30th</li>
+                <li>Placement Drive: 50+ Companies</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- DEPARTMENTS PAGE -->
+<div data-role="page" id="dept">
+    <div data-role="header" data-position="fixed" data-id="nav">
+        <h1>Departments</h1>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home" data-icon="home">Home</a></li>
+                <li><a href="#dept" class="ui-btn-active ui-state-persist" data-icon="grid">Depts</a></li>
+                <li><a href="#gallery" data-icon="camera">Gallery</a></li>
+                <li><a href="#contact" data-icon="mail">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div role="main" class="ui-content">
+        <div class="card">
+            <ul data-role="listview" data-inset="false" data-filter="true" data-filter-placeholder="Search departments...">
+                <li><a href="#">
+                    <h2>Computer Engineering</h2>
+                    <p>Focus on software development and systems.</p>
+                </a></li>
+                <li><a href="#">
+                    <h2>Information Technology</h2>
+                    <p>Focus on data management and network security.</p>
+                </a></li>
+                <li><a href="#">
+                    <h2>ENTC</h2>
+                    <p>Electronics and Telecommunications Engineering.</p>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- GALLERY PAGE -->
+<div data-role="page" id="gallery">
+    <div data-role="header" data-position="fixed" data-id="nav">
+        <h1>Campus Life</h1>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home" data-icon="home">Home</a></li>
+                <li><a href="#dept" data-icon="grid">Depts</a></li>
+                <li><a href="#gallery" class="ui-btn-active ui-state-persist" data-icon="camera">Gallery</a></li>
+                <li><a href="#contact" data-icon="mail">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div role="main" class="ui-content">
+        <div class="card">
+            <div class="gallery-grid">
+                <img src="images/lib.jpg" alt="Library">
+                <img src="images/Lab.jpg" alt="Lab">
+                <img src="images/medical.jpg" alt="Medical">
+                <img src="images/I2IT-Cafeteria-1-e1630649949466.jpg" alt="Cafeteria">
+                <img src="images/sports.jpg" alt="Sports">
+                <img src="images/yoga.jpg" alt="Yoga">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CONTACT PAGE -->
+<div data-role="page" id="contact">
+    <div data-role="header" data-position="fixed" data-id="nav">
+        <h1>Contact Us</h1>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home" data-icon="home">Home</a></li>
+                <li><a href="#dept" data-icon="grid">Depts</a></li>
+                <li><a href="#gallery" data-icon="camera">Gallery</a></li>
+                <li><a href="#contact" class="ui-btn-active ui-state-persist" data-icon="mail">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div role="main" class="ui-content">
+        <div class="card">
+            <h3>Visit Us</h3>
+            <p><b>Address:</b> I2IT Campus, Hinjewadi, Pune, Maharashtra 411057</p>
+            <p><b>Email:</b> DEMO</p>
+            <p><b>Phone:</b> +91 DEMO</p>
+        </div>
+        <div class="card">
+            <h3>Send us a Message</h3>
+            <form action="#" method="post">
+                <label for="full-name">Full Name:</label>
+                <input type="text" name="full-name" id="full-name" value="" data-clear-btn="true" placeholder="Enter your name">
+
+                <label for="email-addr">Email Address:</label>
+                <input type="email" name="email-addr" id="email-addr" value="" data-clear-btn="true" placeholder="email@example.com">
+
+                <label for="user-msg">Message:</label>
+                <textarea name="user-msg" id="user-msg" placeholder="How can we help you?"></textarea>
+
+                <button type="submit" class="ui-btn ui-corner-all ui-shadow ui-btn-b">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
