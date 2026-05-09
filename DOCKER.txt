@@ -1,0 +1,9 @@
+1.) docker --version
+2.)docker images
+3.)sudo docker pull python:trixie
+4.)docker run -d --name python -it -d python:trixie
+5.)docker ps
+6.)docker exec -it python python3
+7.)docker stop containerid
+8.)docker rm containr id
+9.)docker images
