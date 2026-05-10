@@ -1,0 +1,147 @@
+Step 1: Create Project Structure
+
+Your folder should look like:
+Node/
+│
+├── public/
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+│
+├── index.js
+├── package.json
+
+Step 2: Install Express
+
+Run:
+
+npm init -y
+npm install express
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Static Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Welcome to My AWS Hosted Website</h1>
+    <p>Node.js + Express Static Website</p>
+
+    <button onclick="showMessage()">Click Me</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
+body {
+    font-family: Arial;
+    text-align: center;
+    margin-top: 100px;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    color: darkblue;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: blue;
+    color: white;
+    border: none;
+}
+
+function showMessage() {
+    alert("Website is running successfully!");
+}
+
+Step 4: Create Express Server
+index.js
+const express = require('express');
+const path = require('path');
+
+const app = express();
+
+const PORT = 3000;
+
+// Serve static files
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
+Step 5: Run Application
+
+Start server
+node index.js
+
+Step 6: Add Start Script
+
+Update package.json:
+"scripts": {
+  "start": "node index.js"
+}
+
+
+============================================
+AWS Deployment (EC2)
+Step 1: Launch EC2 Instance
+
+Go to:
+
+AWS Console
+
+Launch Ubuntu EC2 instance
+Allow:
+SSH (22)
+HTTP (80)
+Custom TCP (3000)
+
+Step 2: Connect to EC2
+
+Using PowerShell:
+
+ssh -i your-key.pem ubuntu@your-ec2-public-ip
+
+Step 3: Install Node.js
+
+Run:
+
+sudo apt update
+sudo apt install nodejs npm -y
+
+Check versions:
+
+node -v
+npm -v
+====================
+
+cd /d/Download/LP2/Node
+
+chmod 400 mykey.pem
+
+ssh -i mykey.pem ec2-user@107.20.29.171
+
+scp -i mykey.pem NodeApp.zip ec2-user@107.20.29.171:/home/ec2-user/
+======================
+
+Upload ZIP to EC2
+scp -i node-key.pem NodeApp.zip ec2-user@PUBLIC-IP:/home/ec2-user/
+
+SSH Again Into EC2
+ssh -i node-key.pem ec2-user@PUBLIC-IP
+
+ls
+
+Extract ZIP
+sudo yum install unzip -y
+unzip NodeApp.zip
+
+Install Node.js on EC2
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+source ~/.bashrc
+nvm install --lts
+node index.js
