@@ -1,0 +1,131 @@
+GAE
+
+https://console.cloud.google.com/appengine/start?project=graphite-store-495909-j1&cloudshell=true
+ 
+
+Step 1: Create Project Folder
+In the terminal, type:
+mkdir hello-app
+cd hello-app
+Check folder:
+pwd
+
+Step 2: Create main.py
+Type:
+nano main.py
+Paste this code:
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+   return "Hello World from Google App Engine!"
+
+if __name__ == '__main__':
+   app.run(host='127.0.0.1', port=8080, debug=True)
+Save file:
+Press CTRL + O
+Press Enter
+Press CTRL + X
+
+Step 3: Create requirements.txt
+Type:
+nano requirements.txt
+Paste:
+Flask==2.3.2
+gunicorn==21.2.0
+Save and exit.
+
+Step 4: Create app.yaml
+Type:
+nano app.yaml
+Paste:
+runtime: python311
+
+entrypoint: gunicorn -b :$PORT main:app
+Save and exit.
+
+Step 5: Install Packages
+Run:
+pip install -r requirements.txt
+Wait until installation finishes.
+
+Step 6: Run Application Locally
+Run:
+python main.py
+You should see output like:
+Running on http://127.0.0.1:8080
+
+Step 7: Preview the App
+In Cloud Shell:
+Click Web Preview icon (top-right)
+Select Preview on port 8080
+You should see:
+Hello World from Google App Engine!
+
+Step 8: Initialize App Engine
+Stop server using:
+CTRL + C
+Then run:
+gcloud app create
+If asked:
+Choose region like:
+asia-south1
+Type the number and press Enter.
+
+Step 9: Deploy Application
+Run:
+gcloud app deploy
+When asked:
+Do you want to continue (Y/n)?
+Type:
+Y
+Deployment may take 2–5 minutes.
+
+Step 10: Open the Live Website
+Run:
+gcloud app browse
+Your deployed website will open in browser.
+Example:
+https://PROJECT-ID.appspot.com
+
+
+Step 11: Verify Files
+Run:
+ls
+You should see:
+app.yaml
+main.py
+requirements.txt
+
+Step 12: Simple Additional Web App
+Replace code inside main.py with:
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+   return "Welcome to My Web App"
+
+@app.route('/about')
+def about():
+   return "This is About Page"
+
+@app.route('/add/<int:a>/<int:b>')
+def add(a, b):
+   return str(a + b)
+
+if __name__ == '__main__':
+   app.run(debug=True)
+Deploy again:
+gcloud app deploy
+Test URLs:
+/about
+/add/5/10
+Outputs:
+This is About Page
+15
+
+
